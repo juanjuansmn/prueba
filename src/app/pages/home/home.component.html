@@ -1,0 +1,51 @@
+<div>
+    <mat-toolbar>
+        <span>Users</span>
+    </mat-toolbar>
+    
+    <div class="demo-button-container">
+        <button mat-raised-button (click)="goToAdd()" class="demo-button">
+            Add user
+        </button>
+    </div>
+    
+    <table mat-table [dataSource]="usersData" class="mat-elevation-z8">
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+      
+        <!-- Username Column -->
+        <ng-container matColumnDef="username">
+          <th mat-header-cell *matHeaderCellDef> Username </th>
+          <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+        </ng-container>
+      
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+      
+        <!-- Details Column -->
+        <ng-container matColumnDef="details">
+          <th mat-header-cell *matHeaderCellDef> Details </th>
+          <td mat-cell *matCellDef="let element"><a [routerLink] ="['/InfoUser', element.id]" routerLinkActive="router-link-active" >See more...</a></td>
+        </ng-container>
+    
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>  </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-raised-button (click)="deleteUser(element.id)" class="demo-button">
+                    Delete
+                </button>
+            </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      
+</div>
